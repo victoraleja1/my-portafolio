@@ -1,17 +1,45 @@
 ---
+import { getCollection } from 'astro:content';
+import FiltroProyectos from '../components/FiltroProyectos';
+import '../styles/global.css';
 
+// Traemos los proyectos desde nuestra colección Markdown de forma asíncrona
+const todosLosProyectos = await getCollection('proyectos');
+const infoProyectos = todosLosProyectos.map((p) => ({
+  title: p.data.title,
+  description: p.data.description,
+  tags: p.data.tags,
+  githubUrl: p.data.githubUrl,
+}));
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="es" class="bg-black text-white antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Mi Portafolio Profesional</title>
+  </head>
+  <body class="max-w-4xl mx-auto px-6 py-16 selection:bg-blue-500 selection:text-white">
+    
+    <!-- Hero Section (Presentación) -->
+    <header class="mb-16 space-y-4">
+      <h1 class="text-4xl md:text-5xl font-black tracking-tight bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
+        Hola, soy desarrollador de software
+      </h1>
+      <p class="text-zinc-400 text-lg max-w-2xl leading-relaxed">
+        Especializado en el diseño de arquitecturas robustas backend, auditoría técnica de sistemas y despliegues contenerizados modernos.
+      </p>
+    </header>
+
+    <!-- Sección de Proyectos -->
+    <main class="space-y-8">
+      <h2 class="text-2xl font-bold tracking-tight border-b border-zinc-800 pb-2 text-zinc-100">
+        Proyectos Destacados
+      </h2>
+      
+      {/* Montamos el componente de React. 'client:load' le da interactividad al instante */}
+      <FiltroProyectos proyectosIniciales={infoProyectos} client:load />
+    </main>
+
+  </body>
 </html>
