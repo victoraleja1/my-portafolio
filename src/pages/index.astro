@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Navbar from '../components/Navbar.tsx';
 import FiltroProyectos from '../components/FiltroProyectos.tsx';
+import Revelar from '../components/Revelar.tsx';
 import '../styles/global.css';
 
 const todosLosProyectos = await getCollection('proyectos');
@@ -114,6 +115,7 @@ const habilidades = [
       </header>
 
       <!-- SECCIÓN SOBRE MÍ -->
+      <Revelar client:load>
       <section id="sobre-mi" class="space-y-4 scroll-mt-24">
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Sobre Mí</h2>
         <div class="p-6 sm:p-8 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl space-y-4 text-zinc-300 leading-relaxed font-normal">
@@ -125,8 +127,13 @@ const habilidades = [
           </p>
         </div>
       </section>
-
+      </Revelar>
+      <br>
+      <br>
+      <br>
       <!-- SECCIÓN DE ESTADÍSTICAS / MÉTRICAS -->
+      <Revelar client:load>
+
       <section class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
         
         <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
@@ -178,8 +185,14 @@ const habilidades = [
         </div>
 
       </section>
+      <br>
+      <br>
+      <br>
+    </Revelar>
+
 
       <!-- SECCIÓN PROYECTOS -->
+      <Revelar client:load>
       <section id="proyectos" class="space-y-8 scroll-mt-24">
         <div class="space-y-2">
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Proyectos Destacados</h2>
@@ -203,8 +216,12 @@ const habilidades = [
           </a>
         </div>
       </section>
-
+      </Revelar>
+      <br>
+      <br>
+      <br>
       <!-- SECCIÓN HABILIDADES (VERSIÓN CON ICONOS Y TARJETAS INTERACTIVAS) -->
+      <Revelar client:load>
       <section id="habilidades" class="space-y-8 scroll-mt-24">
         <div class="space-y-2">
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Conocimientos & Herramientas</h2>
@@ -242,8 +259,12 @@ const habilidades = [
           ))}
         </div>
       </section>
+      </Revelar>
+      <br>
+      <br>
 
       <!-- SECCIÓN CONTACTO COMPLETA CON FORMULARIO Y LINKS -->
+      <Revelar client:load>
       <section id="contacto" class="space-y-10 scroll-mt-24 pt-8">
         
         <div class="space-y-3 text-center md:text-left">
@@ -354,6 +375,7 @@ const habilidades = [
         </div>
 
       </section>
+      </Revelar>
 
     </div>
 
