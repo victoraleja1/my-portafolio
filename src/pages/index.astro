@@ -1,45 +1,324 @@
 ---
 import { getCollection } from 'astro:content';
-import FiltroProyectos from '../components/FiltroProyectos';
+import Navbar from '../components/Navbar.tsx';
+import FiltroProyectos from '../components/FiltroProyectos.tsx';
 import '../styles/global.css';
 
-// Traemos los proyectos desde nuestra colección Markdown de forma asíncrona
 const todosLosProyectos = await getCollection('proyectos');
 const infoProyectos = todosLosProyectos.map((p) => ({
+  slug: p.id,
   title: p.data.title,
   description: p.data.description,
   tags: p.data.tags,
   githubUrl: p.data.githubUrl,
+  image: p.data.image,
 }));
+
+const habilidades = [
+  { cat: "Desarrollo & Web", items: ["PHP", "JavaScript", "React", "HTML/CSS", "Node.js", "TypeScript"] },
+  { cat: "Redes & Infraestructura", items: ["Configuración de Redes", "GNS3", "MikroTik", "Linux", "Docker"] },
+  { cat: "Soporte Técnico & Hardware", items: ["Mantenimiento Preventivo/Correctivo", "Diagnóstico de Hardware", "Sistemas Operativos", "Seguridad Informática"] },
+  { cat: "Bases de Datos & Gestión", items: ["PostgreSQL", "MySQL", "SQL Server"] }
+];
 ---
 
-<html lang="es" class="bg-black text-white antialiased">
+<html lang="es" class="scroll-smooth bg-black text-zinc-200 antialiased selection:bg-blue-500/30 selection:text-blue-200">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Mi Portafolio Profesional</title>
+    <title>Victor | Portafolio Personal</title>
   </head>
-  <body class="max-w-4xl mx-auto px-6 py-16 selection:bg-blue-500 selection:text-white">
+  <body class="relative min-h-screen overflow-x-hidden font-sans bg-black">
     
-    <!-- Hero Section (Presentación) -->
-    <header class="mb-16 space-y-4">
-      <h1 class="text-4xl md:text-5xl font-black tracking-tight bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
-        Hola, soy desarrollador de software
-      </h1>
-      <p class="text-zinc-400 text-lg max-w-2xl leading-relaxed">
-        Especializado en el diseño de arquitecturas robustas backend, auditoría técnica de sistemas y despliegues contenerizados modernos.
-      </p>
-    </header>
+    <!-- Luces difusas de fondo (Glow Effects) -->
+    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-[40%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none"></div>
 
-    <!-- Sección de Proyectos -->
-    <main class="space-y-8">
-      <h2 class="text-2xl font-bold tracking-tight border-b border-zinc-800 pb-2 text-zinc-100">
-        Proyectos Destacados
-      </h2>
+    <Navbar client:load />
+
+    <div class="max-w-4xl mx-auto px-6 space-y-28 py-20">
       
-      {/* Montamos el componente de React. 'client:load' le da interactividad al instante */}
-      <FiltroProyectos proyectosIniciales={infoProyectos} client:load />
-    </main>
+      <!-- HERO SECTION (Con Avatar / Foto de perfil) -->
+      <header class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 pt-10 md:pt-16 animate-fade-in">
+        <div class="space-y-6 md:w-2/3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800/80 text-xs font-semibold text-blue-400 tracking-wide uppercase">
+            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> Disponible para colaborar
+          </div>
+          
+          <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1] text-white">
+            Soy <br />
+            <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              Victor
+            </span>
+          </h1>
+
+          <p class="text-zinc-400 text-base sm:text-lg leading-relaxed font-normal">
+            Me apasiona construir proyectos web, explorar configuraciones y resolver retos técnicos. Estoy constantemente aprendiendo y buscando oportunidades para aportar mis conocimientos e interés en desarrollo, soporte informático e infraestructura.
+          </p>
+
+          <div class="pt-2 flex flex-wrap gap-4">
+            <a href="#proyectos" class="px-6 py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors shadow-lg shadow-white/5">
+              Ver Proyectos
+            </a>
+            <a href="#contacto" class="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold text-sm hover:bg-zinc-800 hover:border-zinc-700 transition-colors">
+              Contáctame
+            </a>
+          </div>
+        </div>
+
+        <!-- Foto o Avatar Personal -->
+        <div class="relative group">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
+          <img 
+            src="/my-portafolio/avatar.jpg" 
+            alt="Foto de Victor" 
+            class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover border-2 border-zinc-800 shadow-2xl bg-zinc-900"
+          />
+        </div>
+      </header>
+
+      <!-- SECCIÓN SOBRE MÍ -->
+      <section id="sobre-mi" class="space-y-4 scroll-mt-24">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Sobre Mí</h2>
+        <div class="p-6 sm:p-8 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl space-y-4 text-zinc-300 leading-relaxed font-normal">
+          <p>
+            Apasionado por el mundo de la tecnología y la informática en general. Me motiva tanto la lógica detrás del desarrollo de software como la infraestructura que lo hace posible: desde montar aplicaciones web, hasta configurar redes locales, optimizar sistemas y brindar soporte técnico.
+          </p>
+          <p>
+            Me caracteriza la curiosidad constante por aprender nuevas herramientas y entender cómo funciona cada componente. Actualmente busco oportunidades para poner en práctica mis habilidades, seguir creciendo profesionalmente y resolver problemas técnicos reales en equipos de trabajo.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECCIÓN DE ESTADÍSTICAS / MÉTRICAS -->
+      <section class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+        
+        <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
+          <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+            4+
+          </span>
+          <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
+            Proyectos Web
+          </p>
+          <p class="text-[11px] text-zinc-500 font-normal">
+            Construidos & Desplegados
+          </p>
+        </div>
+
+        <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
+          <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            10+
+          </span>
+          <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
+            Tecnologías
+          </p>
+          <p class="text-[11px] text-zinc-500 font-normal">
+            Software, Redes & Datos
+          </p>
+        </div>
+
+        <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
+          <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            100+
+          </span>
+          <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
+            Usuarios
+          </p>
+          <p class="text-[11px] text-zinc-500 font-normal">
+            Impacto en pruebas & demos
+          </p>
+        </div>
+
+        <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
+          <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            24/7
+          </span>
+          <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
+            Motivación
+          </p>
+          <p class="text-[11px] text-zinc-500 font-normal">
+            Aprendizaje & Retos
+          </p>
+        </div>
+
+      </section>
+
+      <!-- SECCIÓN PROYECTOS -->
+      <section id="proyectos" class="space-y-8 scroll-mt-24">
+        <div class="space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Proyectos Destacados</h2>
+          <p class="text-zinc-500 text-sm font-normal">Proyectos prácticos de desarrollo web y configuraciones técnicas.</p>
+        </div>
+        <FiltroProyectos proyectosIniciales={infoProyectos} client:load />
+
+        <!-- 🚀 Botón de llamado a GitHub -->
+        <div class="text-center pt-8">
+          <p class="text-zinc-400 text-sm mb-4 font-normal">¿Quieres ver más código y repositorios?</p>
+          <a
+            href="https://github.com/victoraleja1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-white font-semibold text-sm hover:bg-zinc-800 hover:border-zinc-700 transition-all shadow-lg hover:scale-[1.02]"
+          >
+            <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            Ver GitHub ↗
+          </a>
+        </div>
+      </section>
+
+      <!-- SECCIÓN HABILIDADES -->
+      <section id="habilidades" class="space-y-8 scroll-mt-24">
+        <div class="space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Conocimientos & Herramientas</h2>
+          <p class="text-zinc-500 text-sm font-normal">Áreas en las que practico, configuro y continúo aprendiendo diariamente.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {habilidades.map((h) => (
+            <div class="p-6 bg-zinc-950/40 border border-zinc-900 rounded-2xl space-y-4">
+              <h3 class="text-sm font-bold tracking-widest text-zinc-400 uppercase">{h.cat}</h3>
+              <div class="flex flex-wrap gap-2">
+                {h.items.map((item) => (
+                  <span class="px-3 py-1 text-sm bg-zinc-900 text-zinc-100 rounded-lg border border-zinc-800/60 font-medium">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- SECCIÓN CONTACTO COMPLETA CON FORMULARIO Y LINKS -->
+      <section id="contacto" class="space-y-10 scroll-mt-24 pt-8">
+        
+        <div class="space-y-3 text-center md:text-left">
+          <span class="text-xs font-bold tracking-widest text-blue-400 uppercase">// Contáctame</span>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white">Trabajemos Juntos</h2>
+          <p class="text-zinc-400 text-sm sm:text-base max-w-xl leading-relaxed">
+            Estoy disponible para proyectos freelance, oportunidades laborales o simplemente charlar sobre tecnología. ¡Escríbeme!
+          </p>
+        </div>
+
+        <div class="grid gap-8 lg:grid-cols-5">
+          
+          <!-- Columna Izquierda: Tarjetas de Información / Enlaces Directos -->
+          <div class="lg:col-span-2 space-y-4">
+            
+            <!-- Email -->
+            <a href="mailto:tu-correo@ejemplo.com" class="group p-5 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all shadow-lg block">
+              <div class="p-3 bg-zinc-900 text-blue-400 rounded-xl group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                ✉
+              </div>
+              <div class="overflow-hidden">
+                <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">Email directo</span>
+                <span class="text-sm font-semibold text-zinc-200 group-hover:text-white transition-colors truncate block">victoraleja1@gmail.com</span>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/victoraleja" target="_blank" rel="noopener noreferrer" class="group p-5 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all shadow-lg block">
+              <div class="p-3 bg-zinc-900 text-blue-400 rounded-xl group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                in
+              </div>
+              <div class="overflow-hidden">
+                <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">LinkedIn</span>
+                <span class="text-sm font-semibold text-zinc-200 group-hover:text-white transition-colors truncate block">linkedin.com/in/victoraleja</span>
+              </div>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/victoraleja1" target="_blank" rel="noopener noreferrer" class="group p-5 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all shadow-lg block">
+              <div class="p-3 bg-zinc-900 text-blue-400 rounded-xl group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                🐙
+              </div>
+              <div class="overflow-hidden">
+                <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">GitHub</span>
+                <span class="text-sm font-semibold text-zinc-200 group-hover:text-white transition-colors truncate block">github.com/victoraleja1</span>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- Columna Derecha: Formulario de Contacto Directo -->
+          <div class="lg:col-span-3 p-6 sm:p-8 bg-gradient-to-b from-zinc-900/60 to-zinc-950/90 border border-zinc-800/80 rounded-3xl shadow-2xl space-y-6">
+            <h3 class="text-xl font-bold text-white tracking-tight">Envíame un mensaje</h3>
+
+            <form action="mailto:tu-correo@ejemplo.com" method="GET" class="space-y-4">
+              
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-1.5">
+                  <label for="nombre" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Nombre completo</label>
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="subject"
+                    placeholder="Tu nombre"
+                    required
+                    class="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                  />
+                </div>
+
+                <div class="space-y-1.5">
+                  <label for="email" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="tu@email.com"
+                    required
+                    class="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="mensaje" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Mensaje</label>
+                <textarea
+                  id="mensaje"
+                  name="body"
+                  rows="4"
+                  placeholder="..."
+                  required
+                  class="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-blue-500/20 active:scale-[0.98]"
+              >
+                Enviar Mensaje
+              </button>
+
+              <p class="text-[11px] text-zinc-500 text-center">
+                * Este formulario abre tu cliente de email por defecto.
+              </p>
+
+            </form>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 border-t border-zinc-900 py-8 text-center text-xs text-zinc-600 font-medium">
+      &copy; {new Date().getFullYear()} Victor — Diseñado con Astro, React y Tailwind CSS.
+    </footer>
 
   </body>
 </html>
+
+<style>
+  /* Animación simple de desvanecimiento para el Hero */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

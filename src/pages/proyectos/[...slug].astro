@@ -1,0 +1,83 @@
+---
+import { getCollection, render } from 'astro:content';
+import Navbar from '../../components/Navbar.tsx';
+import '../../styles/global.css';
+
+// Genera automáticamente las URLs basadas en el nombre de tus archivos .md
+export async function getStaticPaths() {
+  const proyectos = await getCollection('proyectos');
+  return proyectos.map((proyecto) => ({
+    params: { slug: proyecto.id },
+    props: { proyecto },
+  }));
+}
+
+const { proyecto } = Astro.props;
+const { Content } = await render(proyecto);
+---
+
+<html lang="es" class="bg-black text-zinc-200 antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{proyecto.data.title} | Detalle del Proyecto</title>
+  </head>
+  <body class="min-h-screen bg-black font-sans relative overflow-x-hidden">
+    
+    <Navbar client:load />
+
+    <main class="max-w-3xl mx-auto px-6 py-16 space-y-10">
+      
+      <!-- Botón de regreso -->
+      <a href="/my-portafolio/#proyectos" class="inline-flex items-center text-xs font-semibold text-zinc-400 hover:text-white transition-colors">
+        ← Volver a Proyectos
+      </a>
+
+      <!-- Encabezado del Proyecto -->
+      <header class="space-y-4 border-b border-zinc-800/80 pb-8">
+        <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+          {proyecto.data.title}
+        </h1>
+        <p class="text-zinc-400 text-base leading-relaxed">
+          {proyecto.data.description}
+        </p>
+
+        <div class="flex flex-wrap gap-2 pt-2">
+          {proyecto.data.tags.map((tag: string) => (
+            <span class="px-3 py-1 text-xs font-medium bg-zinc-900 text-blue-400 rounded-lg border border-zinc-800">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div class="pt-4 flex gap-4">
+          <a
+            href={proyecto.data.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-white font-medium text-xs hover:bg-zinc-800 transition-colors inline-flex items-center gap-2"
+          >
+            Ver Repositorio en GitHub ↗
+          </a>
+          {proyecto.data.liveUrl && (
+            <a
+              href={proyecto.data.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-xs hover:bg-blue-500 transition-colors inline-flex items-center gap-2"
+            >
+              Ver Demo en Vivo ↗
+            </a>
+          )}
+        </div>
+      </header>
+
+      <!-- Contenido renderizado directamente desde el Markdown -->
+      <article class="prose prose-invert prose-blue max-w-none prose-headings:font-bold prose-headings:text-white prose-p:text-zinc-300 prose-p:leading-relaxed prose-li:text-zinc-300">
+        <Content />
+      </article>
+
+    </main>
+
+  </body>
+</html>

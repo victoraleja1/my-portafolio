@@ -2,9 +2,10 @@
 title: "Sistema de Invetarios hecho en PHP"
 description: "Sistemas que lleva el control de inventario de una tienda."
 pubDate: 2025-05-20
-tags: ["HTML", "CSS", "JavaScript"]
-githubUrl: "pixel-two-henna-vercel.app"
+tags: ["PHP", "HTML", "CSS", "JavaScript"]
+githubUrl: "https://3.134.105.164/login"
 featured: true
+image: "/proj1.png"
 ---
 
 ## 🛠️ Arquitectura del Proyecto

@@ -1,1 +1,15 @@
+/* 1. La fuente de Google SIEMPRE primero */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+/* 2. Luego Tailwind */
 @import "tailwindcss";
+
+/* 3. Configuración de tema */
+@theme {
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+  font-family: var(--font-mono);
+}
