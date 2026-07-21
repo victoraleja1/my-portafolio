@@ -37,7 +37,7 @@ export default function FiltroProyectos({ proyectosIniciales }: Props) {
     // Inclinación suave en 3D
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -4; // Grados de inclinación
+    const rotateX = ((y - centerY) / centerY) * -4;
     const rotateY = ((x - centerX) / centerX) * 4;
 
     e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
@@ -55,7 +55,7 @@ export default function FiltroProyectos({ proyectosIniciales }: Props) {
           onClick={() => setTagSeleccionado(null)}
           className={`px-4 py-2 rounded-xl text-xs font-bold font-mono tracking-wide uppercase transition-all duration-300 shadow-sm ${
             tagSeleccionado === null
-              ? "bg-[#fe8019] text-[#1d2021] shadow-[#fe8019]/20 shadow-lg"
+              ? "bg-[#fe8019] text-[#121314] shadow-[#fe8019]/20 shadow-lg"
               : "bg-[#282828] text-[#a89984] border border-[#3c3836] hover:text-[#ebdbb2] hover:border-[#504945]"
           }`}
         >
@@ -67,7 +67,7 @@ export default function FiltroProyectos({ proyectosIniciales }: Props) {
             onClick={() => setTagSeleccionado(tag)}
             className={`px-4 py-2 rounded-xl text-xs font-bold font-mono tracking-wide uppercase transition-all duration-300 ${
               tagSeleccionado === tag
-                ? "bg-[#fe8019] text-[#1d2021] shadow-[#fe8019]/20 shadow-lg"
+                ? "bg-[#fe8019] text-[#121314] shadow-[#fe8019]/20 shadow-lg"
                 : "bg-[#282828] text-[#a89984] border border-[#3c3836] hover:text-[#ebdbb2] hover:border-[#504945]"
             }`}
           >
@@ -76,7 +76,7 @@ export default function FiltroProyectos({ proyectosIniciales }: Props) {
         ))}
       </div>
 
-      {/* Grid Animado con Tarjetas Gruvbox */}
+      {/* Grid Animado con Tarjetas Gruvbox sobre Fondo Oscuro */}
       <motion.div layout className="grid gap-6 sm:grid-cols-2">
         <AnimatePresence mode="popLayout">
           {proyectosFiltrados.map((p, index) => {
@@ -98,7 +98,7 @@ export default function FiltroProyectos({ proyectosIniciales }: Props) {
                 onMouseLeave={handleMouseLeave}
                 className="group relative flex flex-col bg-[#282828] border border-[#3c3836] rounded-2xl overflow-hidden shadow-2xl transition-all duration-200 ease-out hover:border-[#8ec07c]/60"
               >
-                {/* 💡 CAPA DE LUZ SPOTLIGHT EN HOVER (CÁLIDA GRUVBOX) */}
+                {/* 💡 CAPA DE LUZ SPOTLIGHT EN HOVER */}
                 <div
                   className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30"
                   style={{
@@ -108,7 +108,7 @@ export default function FiltroProyectos({ proyectosIniciales }: Props) {
 
                 {/* 🖼️ VISTA PREVIA DE LA IMAGEN DESTACADA */}
                 {imageSrc ? (
-                  <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-[#1d2021] border-b border-[#3c3836] z-10">
+                  <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-[#121314] border-b border-[#3c3836] z-10">
                     <img
                       src={imageSrc}
                       alt={p.title}
@@ -118,7 +118,7 @@ export default function FiltroProyectos({ proyectosIniciales }: Props) {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#282828]/90 via-transparent to-transparent" />
                   </div>
                 ) : (
-                  <div className="w-full h-32 bg-[#1d2021] border-b border-[#3c3836] flex items-center justify-center z-10">
+                  <div className="w-full h-32 bg-[#121314] border-b border-[#3c3836] flex items-center justify-center z-10">
                     <span className="text-xs font-mono text-[#928374]">
                       // Sin vista previa
                     </span>
@@ -148,7 +148,7 @@ export default function FiltroProyectos({ proyectosIniciales }: Props) {
                       {p.tags.map((t) => (
                         <span
                           key={t}
-                          className="px-2.5 py-1 text-[10px] font-mono tracking-wider bg-[#1d2021] text-[#ebdbb2] rounded-md border border-[#3c3836]"
+                          className="px-2.5 py-1 text-[10px] font-mono tracking-wider bg-[#121314] text-[#ebdbb2] rounded-md border border-[#3c3836]"
                         >
                           {t}
                         </span>

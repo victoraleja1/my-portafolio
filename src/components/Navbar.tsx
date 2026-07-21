@@ -12,7 +12,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#1d2021]/80 border-b border-[#3c3836] px-6 py-4 transition-all">
+    <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#121314]/85 border-b border-[#3c3836] px-6 py-4 transition-all">
       <div className="max-w-5xl mx-auto flex items-center justify-between">
         {/* Logo / Monograma Gruvbox */}
         <motion.a
@@ -67,14 +67,14 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Menú Móvil Desplegable Gruvbox */}
+      {/* Menú Móvil Desplegable Oscuro */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 w-full bg-[#282828]/95 border-b border-[#3c3836] px-6 py-6 flex flex-col gap-4 md:hidden backdrop-blur-lg shadow-2xl"
+            className="absolute top-full left-0 w-full bg-[#1c1e1f]/95 border-b border-[#3c3836] px-6 py-6 flex flex-col gap-4 md:hidden backdrop-blur-lg shadow-2xl"
           >
             {enlaces.map((link) => (
               <a
