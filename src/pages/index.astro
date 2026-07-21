@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Navbar from '../components/Navbar.tsx';
 import FiltroProyectos from '../components/FiltroProyectos.tsx';
 import Revelar from '../components/Revelar.tsx';
+import StatusBadge from '../components/StatusBadge.tsx';
 import '../styles/global.css';
 
 const todosLosProyectos = await getCollection('proyectos');
@@ -65,15 +66,16 @@ const habilidades = [
     <meta name="viewport" content="width=device-width" />
     <title>Victor | Portafolio Personal</title>
   </head>
-  <body class="relative min-h-screen overflow-x-hidden font-sans bg-black">
+  <body class="relative min-h-screen w-full overflow-x-hidden font-sans bg-black">
     
-    <!-- Luces difusas de fondo (Glow Effects) -->
-    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none"></div>
-    <div class="absolute top-[40%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none"></div>
-
+    <!-- Contenedor que recorta cualquier brillo o luz que se salga de pantalla -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-[-5%] left-[-10%] w-[70vw] sm:w-[50vw] h-[70vw] sm:h-[50vw] rounded-full bg-blue-900/15 blur-[100px] sm:blur-[120px]"></div>
+      <div class="absolute top-[35%] right-[-10%] w-[60vw] sm:w-[40vw] h-[60vw] sm:h-[40vw] rounded-full bg-indigo-900/15 blur-[100px] sm:blur-[120px]"></div>
+    </div>
     <Navbar client:load />
 
-    <div class="max-w-4xl mx-auto px-6 space-y-28 py-20">
+    <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 space-y-20 sm:space-y-28 py-12 sm:py-20">
       
       <!-- HERO SECTION (Con Avatar / Foto de perfil) -->
       <header class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 pt-10 md:pt-16 animate-fade-in">
@@ -114,23 +116,71 @@ const habilidades = [
         </div>
       </header>
 
-      <!-- SECCIÓN SOBRE MÍ -->
+      <!-- SECCIÓN SOBRE MÍ (ESTILO TERMINAL / CONSOLA) -->
       <Revelar client:load>
       <section id="sobre-mi" class="space-y-4 scroll-mt-24">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Sobre Mí</h2>
-        <div class="p-6 sm:p-8 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl space-y-4 text-zinc-300 leading-relaxed font-normal">
-          <p>
-            Apasionado por el mundo de la tecnología y la informática en general. Me motiva tanto la lógica detrás del desarrollo de software como la infraestructura que lo hace posible: desde montar aplicaciones web, hasta configurar redes locales, optimizar sistemas y brindar soporte técnico.
-          </p>
-          <p>
-            Me caracteriza la curiosidad constante por aprender nuevas herramientas y entender cómo funciona cada componente. Actualmente busco oportunidades para poner en práctica mis habilidades, seguir creciendo profesionalmente y resolver problemas técnicos reales en equipos de trabajo.
-          </p>
+        <div class="space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-mono flex items-center gap-2">
+            <span class="text-blue-500">❯</span> Sobre Mí
+          </h2>
+        </div>
+
+        <!-- Ventana de Consola -->
+        <div class="relative overflow-hidden bg-zinc-950/90 border border-zinc-800/90 rounded-2xl shadow-2xl backdrop-blur-xl">
+          
+          <!-- Barra Superior de la Terminal -->
+          <div class="px-4 py-3 bg-zinc-900/90 border-b border-zinc-800/80 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+              <span class="ml-2 text-xs font-mono text-zinc-400">dev@archlinux: ~/about.sh</span>
+            </div>
+            <span class="text-[11px] font-mono text-zinc-500 hidden sm:block">bash 5.2.26</span>
+          </div>
+
+          <!-- Contenido del Script/Comando -->
+          <div class="p-5 sm:p-7 font-mono text-xs sm:text-sm space-y-4 leading-relaxed">
+            
+            <!-- Ejecución del comando -->
+            <div class="flex items-center gap-2 text-zinc-400">
+              <span class="text-emerald-400 font-bold">victor@arch</span>
+              <span class="text-zinc-500">:</span>
+              <span class="text-blue-400 font-bold">~</span>
+              <span class="text-zinc-200">$ cat about.txt</span>
+            </div>
+
+            <!-- Texto de salida de la consola -->
+            <div class="text-zinc-300 space-y-3 pl-2 border-l-2 border-zinc-800/80">
+              <p>
+                Apasionado por el mundo de la tecnología y la informática en general. Me motiva tanto la lógica detrás del desarrollo de software como la arquitectura física y virtual de redes y servidores.
+              </p>
+              <p>
+                Cuento con conocimientos aplicados en desarrollo web (frontend y backend), administración de entornos Linux, soporte técnico e infraestructura de red.
+              </p>
+              <p class="text-zinc-400 italic">
+                // Siempre explorando nuevas herramientas, optimizando configuraciones y buscando retos técnicos que me permitan crecer profesionalmente.
+              </p>
+            </div>
+
+            <!-- Prompt listo con cursor parpadeante -->
+            <div class="flex items-center gap-2 pt-2 text-zinc-400">
+              <span class="text-emerald-400 font-bold">victor@arch</span>
+              <span class="text-zinc-500">:</span>
+              <span class="text-blue-400 font-bold">~</span>
+              <span class="text-zinc-200">$</span>
+              <span class="w-2 h-4 bg-blue-400 animate-pulse inline-block align-middle"></span>
+            </div>
+
+          </div>
+
         </div>
       </section>
       </Revelar>
       <br>
       <br>
       <br>
+
       <!-- SECCIÓN DE ESTADÍSTICAS / MÉTRICAS -->
       <Revelar client:load>
 
@@ -138,7 +188,7 @@ const habilidades = [
         
         <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
           <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            4+
+            5+
           </span>
           <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
             Proyectos Web
@@ -150,7 +200,7 @@ const habilidades = [
 
         <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
           <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-            10+
+            11+
           </span>
           <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
             Tecnologías
@@ -162,7 +212,7 @@ const habilidades = [
 
         <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
           <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            100+
+            50+
           </span>
           <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
             Usuarios
@@ -202,7 +252,7 @@ const habilidades = [
 
         <!-- 🚀 Botón de llamado a GitHub -->
         <div class="text-center pt-8">
-          <p class="text-zinc-400 text-sm mb-4 font-normal">¿Quieres ver más código y repositorios?</p>
+          <p class="text-zinc-400 text-sm mb-4 font-normal">¿Deseas ver código?</p>
           <a
             href="https://github.com/victoraleja1"
             target="_blank"
@@ -385,6 +435,7 @@ const habilidades = [
     </footer>
 
   </body>
+  <StatusBadge client:load />
 </html>
 
 <style>
