@@ -12,12 +12,12 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-black/60 border-b border-zinc-800/80 px-6 py-4 transition-all">
+    <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#1d2021]/80 border-b border-[#3c3836] px-6 py-4 transition-all">
       <div className="max-w-5xl mx-auto flex items-center justify-between">
-        {/* Logo / Monograma */}
+        {/* Logo / Monograma Gruvbox */}
         <motion.a
           href="#"
-          className="text-xl font-black bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent tracking-tighter"
+          className="text-xl font-black bg-gradient-to-r from-[#fe8019] to-[#fabd2f] bg-clip-text text-transparent font-mono tracking-tighter"
           whileHover={{ scale: 1.05 }}
         >
           V.
@@ -29,10 +29,10 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-zinc-400 hover:text-white transition-colors relative group"
+              className="text-sm font-mono font-medium text-[#a89984] hover:text-[#ebdbb2] transition-colors relative group"
             >
               {link.name}
-              <span className="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-blue-500 transition-all group-hover:w-full" />
+              <span className="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-[#fe8019] transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </div>
@@ -40,7 +40,7 @@ export default function Navbar() {
         {/* Botón Móvil */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-zinc-400 hover:text-white focus:outline-none"
+          className="md:hidden text-[#a89984] hover:text-[#ebdbb2] focus:outline-none"
         >
           <svg
             className="w-6 h-6"
@@ -67,21 +67,21 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Menú Móvil Desplegable con Animación */}
+      {/* Menú Móvil Desplegable Gruvbox */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 w-full bg-black/95 border-b border-zinc-800 px-6 py-6 flex flex-col gap-4 md:hidden backdrop-blur-lg"
+            className="absolute top-full left-0 w-full bg-[#282828]/95 border-b border-[#3c3836] px-6 py-6 flex flex-col gap-4 md:hidden backdrop-blur-lg shadow-2xl"
           >
             {enlaces.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-lg font-semibold text-zinc-300 hover:text-white transition-colors"
+                className="text-lg font-mono font-semibold text-[#a89984] hover:text-[#fe8019] transition-colors"
               >
                 {link.name}
               </a>

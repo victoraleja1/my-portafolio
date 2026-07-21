@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar.tsx';
 import FiltroProyectos from '../components/FiltroProyectos.tsx';
 import Revelar from '../components/Revelar.tsx';
 import StatusBadge from '../components/StatusBadge.tsx';
+import ContadorAnimado from '../components/ContadorAnimado.tsx';
+import ScrollProgressBar from '../components/ScrollProgressBar.tsx';
 import '../styles/global.css';
 
 const todosLosProyectos = await getCollection('proyectos');
@@ -34,18 +36,18 @@ const habilidades = [
     items: [
       { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
       { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      { name: "Configuración de Redes", icon: "https://api.iconify.design/lucide:network.svg?color=%2360a5fa" },
-      { name: "GNS3 / Simulación", icon: "https://api.iconify.design/lucide:router.svg?color=%23818cf8" },
-      { name: "MikroTik", icon: "https://api.iconify.design/lucide:server-cog.svg?color=%2338bdf8" },
+      { name: "Configuración de Redes", icon: "https://api.iconify.design/lucide:network.svg?color=%238ec07c" },
+      { name: "GNS3 / Simulación", icon: "https://api.iconify.design/lucide:router.svg?color=%23fe8019" },
+      { name: "MikroTik", icon: "https://api.iconify.design/lucide:server-cog.svg?color=%2383a598" },
     ]
   },
   {
     cat: "Soporte Técnico & Hardware",
     items: [
-      { name: "Hardware", icon: "https://api.iconify.design/lucide:cpu.svg?color=%2338bdf8" },
-      { name: "Software", icon: "https://api.iconify.design/lucide:wrench.svg?color=%23fbbf24" },
-      { name: "Sistemas Operativos", icon: "https://api.iconify.design/lucide:monitor.svg?color=%23a855f7" },
-      { name: "Seguridad Informática", icon: "https://api.iconify.design/lucide:shield-check.svg?color=%2334d399" },
+      { name: "Hardware", icon: "https://api.iconify.design/lucide:cpu.svg?color=%238ec07c" },
+      { name: "Software", icon: "https://api.iconify.design/lucide:wrench.svg?color=%23fabd2f" },
+      { name: "Sistemas Operativos", icon: "https://api.iconify.design/lucide:monitor.svg?color=%23d3869b" },
+      { name: "Seguridad Informática", icon: "https://api.iconify.design/lucide:shield-check.svg?color=%23b8bb26" },
     ]
   },
   {
@@ -60,46 +62,49 @@ const habilidades = [
 ];
 ---
 
-<html lang="es" class="scroll-smooth bg-black text-zinc-200 antialiased selection:bg-blue-500/30 selection:text-blue-200">
+<html lang="es" class="scroll-smooth bg-[#1d2021] text-[#ebdbb2] antialiased selection:bg-[#fe8019]/30 selection:text-[#fe8019]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Victor | Portafolio Personal</title>
   </head>
-  <body class="relative min-h-screen w-full overflow-x-hidden font-sans bg-black">
+  <body class="relative min-h-screen w-full overflow-x-hidden font-sans bg-[#1d2021]">
     
-    <!-- Contenedor que recorta cualquier brillo o luz que se salga de pantalla -->
+    <!-- 🚀 Barra de progreso de scroll -->
+    <ScrollProgressBar client:load />
+    
+    <!-- Luces de fondo estilo Gruvbox Muted -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="absolute top-[-5%] left-[-10%] w-[70vw] sm:w-[50vw] h-[70vw] sm:h-[50vw] rounded-full bg-blue-900/15 blur-[100px] sm:blur-[120px]"></div>
-      <div class="absolute top-[35%] right-[-10%] w-[60vw] sm:w-[40vw] h-[60vw] sm:h-[40vw] rounded-full bg-indigo-900/15 blur-[100px] sm:blur-[120px]"></div>
+      <div class="absolute top-[-5%] left-[-10%] w-[70vw] sm:w-[50vw] h-[70vw] sm:h-[50vw] rounded-full bg-[#fe8019]/10 blur-[100px] sm:blur-[120px]"></div>
+      <div class="absolute top-[35%] right-[-10%] w-[60vw] sm:w-[40vw] h-[60vw] sm:h-[40vw] rounded-full bg-[#8ec07c]/10 blur-[100px] sm:blur-[120px]"></div>
     </div>
     <Navbar client:load />
 
     <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 space-y-20 sm:space-y-28 py-12 sm:py-20">
       
-      <!-- HERO SECTION (Con Avatar / Foto de perfil) -->
+      <!-- HERO SECTION -->
       <header class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 pt-10 md:pt-16 animate-fade-in">
         <div class="space-y-6 md:w-2/3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800/80 text-xs font-semibold text-blue-400 tracking-wide uppercase">
-            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> Disponible para colaborar
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#282828] border border-[#3c3836] text-xs font-semibold text-[#b8bb26] tracking-wide uppercase">
+            <span class="w-2 h-2 rounded-full bg-[#b8bb26] animate-pulse"></span> Disponible
           </div>
           
-          <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1] text-white">
+          <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1] text-[#ebdbb2]">
             Soy <br />
-            <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-[#fe8019] to-[#fabd2f] bg-clip-text text-transparent font-mono font-black">
               Victor
             </span>
           </h1>
 
-          <p class="text-zinc-400 text-base sm:text-lg leading-relaxed font-normal">
+          <p class="text-[#a89984] text-base sm:text-lg leading-relaxed font-normal">
             Me apasiona construir proyectos web, explorar configuraciones y resolver retos técnicos. Estoy constantemente aprendiendo y buscando oportunidades para aportar mis conocimientos e interés en desarrollo, soporte informático e infraestructura.
           </p>
 
           <div class="pt-2 flex flex-wrap gap-4">
-            <a href="#proyectos" class="px-6 py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors shadow-lg shadow-white/5">
+            <a href="#proyectos" class="px-6 py-3 rounded-xl bg-[#fe8019] text-[#1d2021] font-bold text-sm hover:bg-[#fabd2f] transition-colors shadow-lg shadow-[#fe8019]/10">
               Ver Proyectos
             </a>
-            <a href="#contacto" class="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold text-sm hover:bg-zinc-800 hover:border-zinc-700 transition-colors">
+            <a href="#contacto" class="px-6 py-3 rounded-xl bg-[#282828] border border-[#3c3836] text-[#ebdbb2] font-semibold text-sm hover:bg-[#32302f] hover:border-[#504945] transition-colors">
               Contáctame
             </a>
           </div>
@@ -107,69 +112,69 @@ const habilidades = [
 
         <!-- Foto o Avatar Personal -->
         <div class="relative group">
-          <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-[#fe8019] to-[#8ec07c] rounded-full blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
           <img 
             src="/my-portafolio/avatar.jpg" 
             alt="Foto de Victor" 
-            class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover border-2 border-zinc-800 shadow-2xl bg-zinc-900"
+            class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover border-2 border-[#3c3836] shadow-2xl bg-[#282828]"
           />
         </div>
       </header>
 
-      <!-- SECCIÓN SOBRE MÍ (ESTILO TERMINAL / CONSOLA) -->
+      <!-- SECCIÓN SOBRE MÍ (ESTILO TERMINAL / CONSOLA GRUVBOX) -->
       <Revelar client:load>
       <section id="sobre-mi" class="space-y-4 scroll-mt-24">
         <div class="space-y-2">
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-mono flex items-center gap-2">
-            <span class="text-blue-500">❯</span> Sobre Mí
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#ebdbb2] font-mono flex items-center gap-2">
+            <span class="text-[#fe8019]">❯</span> Sobre Mí
           </h2>
         </div>
 
-        <!-- Ventana de Consola -->
-        <div class="relative overflow-hidden bg-zinc-950/90 border border-zinc-800/90 rounded-2xl shadow-2xl backdrop-blur-xl">
+        <!-- Ventana de Consola Gruvbox -->
+        <div class="relative overflow-hidden bg-[#1d2021]/90 border border-[#3c3836] rounded-2xl shadow-2xl backdrop-blur-xl">
           
           <!-- Barra Superior de la Terminal -->
-          <div class="px-4 py-3 bg-zinc-900/90 border-b border-zinc-800/80 flex items-center justify-between">
+          <div class="px-4 py-3 bg-[#282828] border-b border-[#3c3836] flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-              <span class="ml-2 text-xs font-mono text-zinc-400">dev@archlinux: ~/about.sh</span>
+              <span class="w-3 h-3 rounded-full bg-[#fb4934] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#fabd2f] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#b8bb26] inline-block"></span>
+              <span class="ml-2 text-xs font-mono text-[#a89984]">dev@linux: ~/about.sh</span>
             </div>
-            <span class="text-[11px] font-mono text-zinc-500 hidden sm:block">bash 5.2.26</span>
+            <span class="text-[11px] font-mono text-[#928374] hidden sm:block">bash 5.2.26</span>
           </div>
 
           <!-- Contenido del Script/Comando -->
           <div class="p-5 sm:p-7 font-mono text-xs sm:text-sm space-y-4 leading-relaxed">
             
             <!-- Ejecución del comando -->
-            <div class="flex items-center gap-2 text-zinc-400">
-              <span class="text-emerald-400 font-bold">victor@arch</span>
-              <span class="text-zinc-500">:</span>
-              <span class="text-blue-400 font-bold">~</span>
-              <span class="text-zinc-200">$ cat about.txt</span>
+            <div class="flex items-center gap-2 text-[#a89984]">
+              <span class="text-[#b8bb26] font-bold">victor@arch</span>
+              <span class="text-[#928374]">:</span>
+              <span class="text-[#8ec07c] font-bold">~</span>
+              <span class="text-[#ebdbb2]">$ cat about.txt</span>
             </div>
 
             <!-- Texto de salida de la consola -->
-            <div class="text-zinc-300 space-y-3 pl-2 border-l-2 border-zinc-800/80">
+            <div class="text-[#ebdbb2] space-y-3 pl-2 border-l-2 border-[#3c3836]">
               <p>
                 Apasionado por el mundo de la tecnología y la informática en general. Me motiva tanto la lógica detrás del desarrollo de software como la arquitectura física y virtual de redes y servidores.
               </p>
               <p>
                 Cuento con conocimientos aplicados en desarrollo web (frontend y backend), administración de entornos Linux, soporte técnico e infraestructura de red.
               </p>
-              <p class="text-zinc-400 italic">
+              <p class="text-[#928374] italic">
                 // Siempre explorando nuevas herramientas, optimizando configuraciones y buscando retos técnicos que me permitan crecer profesionalmente.
               </p>
             </div>
 
             <!-- Prompt listo con cursor parpadeante -->
-            <div class="flex items-center gap-2 pt-2 text-zinc-400">
-              <span class="text-emerald-400 font-bold">victor@arch</span>
-              <span class="text-zinc-500">:</span>
-              <span class="text-blue-400 font-bold">~</span>
-              <span class="text-zinc-200">$</span>
-              <span class="w-2 h-4 bg-blue-400 animate-pulse inline-block align-middle"></span>
+            <div class="flex items-center gap-2 pt-2 text-[#a89984]">
+              <span class="text-[#b8bb26] font-bold">victor@arch</span>
+              <span class="text-[#928374]">:</span>
+              <span class="text-[#8ec07c] font-bold">~</span>
+              <span class="text-[#ebdbb2]">$</span>
+              <span class="w-2 h-4 bg-[#fe8019] animate-pulse inline-block align-middle"></span>
             </div>
 
           </div>
@@ -177,89 +182,71 @@ const habilidades = [
         </div>
       </section>
       </Revelar>
-      <br>
-      <br>
-      <br>
+      <br><br><br>
 
-      <!-- SECCIÓN DE ESTADÍSTICAS / MÉTRICAS -->
+      <!-- Sección de Métricas / Estadísticas -->
       <Revelar client:load>
-
       <section class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
         
-        <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
-          <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            5+
-          </span>
-          <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
-            Proyectos Web
-          </p>
-          <p class="text-[11px] text-zinc-500 font-normal">
-            Construidos & Desplegados
-          </p>
-        </div>
+        <Revelar client:load delay={0}>
+          <div class="p-6 bg-[#282828] border border-[#3c3836] rounded-2xl text-center space-y-1">
+            <h3 class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-[#fe8019] to-[#fabd2f] bg-clip-text text-transparent font-mono">
+              <ContadorAnimado client:load final={5} />
+            </h3>
+            <p class="text-xs text-[#a89984] font-mono">Proyectos Principales</p>
+          </div>
+        </Revelar>
 
-        <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
-          <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-            11+
-          </span>
-          <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
-            Tecnologías
-          </p>
-          <p class="text-[11px] text-zinc-500 font-normal">
-            Software, Redes & Datos
-          </p>
-        </div>
+        <Revelar client:load delay={0.1}>
+          <div class="p-6 bg-[#282828] border border-[#3c3836] rounded-2xl text-center space-y-1">
+            <h3 class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-[#fe8019] to-[#fabd2f] bg-clip-text text-transparent font-mono">
+              <ContadorAnimado client:load final={10} />
+            </h3>
+            <p class="text-xs text-[#a89984] font-mono">Tecnologías Dominadas</p>
+          </div>
+        </Revelar>
 
-        <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
-          <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            50+
-          </span>
-          <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
-            Usuarios
-          </p>
-          <p class="text-[11px] text-zinc-500 font-normal">
-            Impacto en pruebas & demos
-          </p>
-        </div>
+        <Revelar client:load delay={0.2}>
+          <div class="p-6 bg-[#282828] border border-[#3c3836] rounded-2xl text-center space-y-1">
+            <h3 class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-[#fe8019] to-[#fabd2f] bg-clip-text text-transparent font-mono">
+              <ContadorAnimado client:load final={100} sufijo="%" />
+            </h3>
+            <p class="text-xs text-[#a89984] font-mono">Código Limpio & Optimizado</p>
+          </div>
+        </Revelar>
 
-        <div class="p-6 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-zinc-800/80 rounded-2xl text-center space-y-1 hover:border-zinc-700/80 transition-colors shadow-lg">
-          <span class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-            24/7
-          </span>
-          <p class="text-xs sm:text-sm font-semibold text-white tracking-wide">
-            Motivación
-          </p>
-          <p class="text-[11px] text-zinc-500 font-normal">
-            Aprendizaje & Retos
-          </p>
-        </div>
+        <Revelar client:load delay={0.3}>
+          <div class="p-6 bg-[#282828] border border-[#3c3836] rounded-2xl text-center space-y-1">
+            <h3 class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-[#fe8019] to-[#fabd2f] bg-clip-text text-transparent font-mono">
+              24/7
+            </h3>
+            <p class="text-xs text-[#a89984] font-mono">Motivación por Aprender</p>
+          </div>
+        </Revelar>
 
       </section>
-      <br>
-      <br>
-      <br>
-    </Revelar>
-
+      <br><br><br>
+      </Revelar>
 
       <!-- SECCIÓN PROYECTOS -->
       <Revelar client:load>
       <section id="proyectos" class="space-y-8 scroll-mt-24">
         <div class="space-y-2">
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Proyectos Destacados</h2>
-          <p class="text-zinc-500 text-sm font-normal">Proyectos prácticos de desarrollo web y configuraciones técnicas.</p>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#ebdbb2]">Proyectos Destacados</h2>
+          <p class="text-[#a89984] text-sm font-normal">Proyectos prácticos de desarrollo web y configuraciones técnicas.</p>
         </div>
         <FiltroProyectos proyectosIniciales={infoProyectos} client:load />
 
         <!-- 🚀 Botón de llamado a GitHub -->
         <div class="text-center pt-8">
-          <p class="text-zinc-400 text-sm mb-4 font-normal">¿Deseas ver código?</p>
+          <p class="text-[#a89984] text-sm mb-4 font-normal">¿Deseas ver código?</p>
           <a
             href="https://github.com/victoraleja1"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-white font-semibold text-sm hover:bg-zinc-800 hover:border-zinc-700 transition-all shadow-lg hover:scale-[1.02]"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#282828] border border-[#3c3836] text-[#ebdbb2] font-semibold text-sm hover:bg-[#32302f] hover:border-[#504945] transition-all shadow-lg hover:scale-[1.02]"
           >
-            <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 fill-current text-[#ebdbb2]" viewBox="0 0 24 24">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
             </svg>
             Ver GitHub ↗
@@ -267,38 +254,37 @@ const habilidades = [
         </div>
       </section>
       </Revelar>
-      <br>
-      <br>
-      <br>
-      <!-- SECCIÓN HABILIDADES (VERSIÓN CON ICONOS Y TARJETAS INTERACTIVAS) -->
+      <br><br><br>
+
+      <!-- SECCIÓN HABILIDADES -->
       <Revelar client:load>
       <section id="habilidades" class="space-y-8 scroll-mt-24">
         <div class="space-y-2">
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Conocimientos & Herramientas</h2>
-          <p class="text-zinc-500 text-sm font-normal">Herramientas, entornos y tecnologías aplicadas en desarrollo, redes y laboratorios.</p>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#ebdbb2]">Conocimientos & Herramientas</h2>
+          <p class="text-[#a89984] text-sm font-normal">Herramientas, entornos y tecnologías aplicadas en desarrollo, redes y laboratorios.</p>
         </div>
 
         <div class="grid gap-6 sm:grid-cols-2">
           {habilidades.map((h) => (
-            <div class="p-6 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl space-y-5 shadow-xl hover:border-zinc-700/80 transition-all">
+            <div class="p-6 bg-[#282828]/80 border border-[#3c3836] rounded-2xl space-y-5 shadow-xl hover:border-[#504945] transition-all">
               
               <!-- Título de Categoría -->
-              <div class="flex items-center gap-2 border-b border-zinc-800/80 pb-3">
-                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-                <h3 class="text-xs font-bold tracking-widest text-zinc-300 uppercase font-mono">{h.cat}</h3>
+              <div class="flex items-center gap-2 border-b border-[#3c3836] pb-3">
+                <span class="w-2 h-2 rounded-full bg-[#fe8019]"></span>
+                <h3 class="text-xs font-bold tracking-widest text-[#a89984] uppercase font-mono">{h.cat}</h3>
               </div>
 
-              <!-- Grid de Items con Iconos -->
+              <!-- Grid de Items -->
               <div class="grid grid-cols-2 gap-3">
                 {h.items.map((item) => (
-                  <div class="group flex items-center gap-3 p-2.5 bg-zinc-900/60 border border-zinc-800/60 rounded-xl hover:bg-zinc-800/80 hover:border-blue-500/40 hover:scale-[1.02] transition-all duration-300">
+                  <div class="group flex items-center gap-3 p-2.5 bg-[#1d2021]/80 border border-[#3c3836] rounded-xl hover:bg-[#32302f] hover:border-[#8ec07c]/50 hover:scale-[1.02] transition-all duration-300">
                     <img 
                       src={item.icon} 
                       alt={item.name} 
-                      class="w-6 h-6 object-contain group-hover:scale-110 transition-transform duration-300 filter group-hover:brightness-110" 
+                      class="w-6 h-6 object-contain group-hover:scale-110 transition-transform duration-300" 
                       loading="lazy"
                     />
-                    <span class="text-xs font-semibold text-zinc-300 group-hover:text-white transition-colors truncate">
+                    <span class="text-xs font-semibold text-[#a89984] group-hover:text-[#ebdbb2] transition-colors truncate">
                       {item.name}
                     </span>
                   </div>
@@ -310,112 +296,111 @@ const habilidades = [
         </div>
       </section>
       </Revelar>
-      <br>
-      <br>
+      <br><br>
 
-      <!-- SECCIÓN CONTACTO COMPLETA CON FORMULARIO Y LINKS -->
+      <!-- SECCIÓN CONTACTO -->
       <Revelar client:load>
       <section id="contacto" class="space-y-10 scroll-mt-24 pt-8">
         
         <div class="space-y-3 text-center md:text-left">
-          <span class="text-xs font-bold tracking-widest text-blue-400 uppercase">// Contáctame</span>
-          <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white">Trabajemos Juntos</h2>
-          <p class="text-zinc-400 text-sm sm:text-base max-w-xl leading-relaxed">
-            Estoy disponible para proyectos freelance, oportunidades laborales o simplemente charlar sobre tecnología. ¡Escríbeme!
+          <span class="text-xs font-bold tracking-widest text-[#8ec07c] uppercase font-mono">// Contáctame</span>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-[#ebdbb2]">Trabajemos Juntos</h2>
+          <p class="text-[#a89984] text-sm sm:text-base max-w-xl leading-relaxed">
+            Estoy disponible para proyectos, oportunidades laborales o simplemente charlar sobre tecnología. ¡Escríbeme!
           </p>
         </div>
 
         <div class="grid gap-8 lg:grid-cols-5">
           
-          <!-- Columna Izquierda: Tarjetas de Información / Enlaces Directos -->
+          <!-- Columna Izquierda: Tarjetas de Información -->
           <div class="lg:col-span-2 space-y-4">
             
             <!-- Email -->
-            <a href="mailto:tu-correo@ejemplo.com" class="group p-5 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all shadow-lg block">
-              <div class="p-3 bg-zinc-900 text-blue-400 rounded-xl group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+            <a href="mailto:victoraleja1@gmail.com" class="group p-5 bg-[#282828]/80 border border-[#3c3836] rounded-2xl flex items-center gap-4 hover:border-[#8ec07c]/50 hover:bg-[#32302f] transition-all shadow-lg block">
+              <div class="p-3 bg-[#1d2021] text-[#8ec07c] rounded-xl group-hover:scale-110 group-hover:bg-[#8ec07c] group-hover:text-[#1d2021] transition-all font-bold">
                 ✉
               </div>
               <div class="overflow-hidden">
-                <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">Email directo</span>
-                <span class="text-sm font-semibold text-zinc-200 group-hover:text-white transition-colors truncate block">victoraleja1@gmail.com</span>
+                <span class="text-[11px] font-bold text-[#928374] uppercase tracking-wider block">Email directo</span>
+                <span class="text-sm font-semibold text-[#ebdbb2] group-hover:text-[#8ec07c] transition-colors truncate block">victoraleja1@gmail.com</span>
               </div>
             </a>
 
             <!-- LinkedIn -->
-            <a href="https://linkedin.com/in/victoraleja" target="_blank" rel="noopener noreferrer" class="group p-5 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all shadow-lg block">
-              <div class="p-3 bg-zinc-900 text-blue-400 rounded-xl group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+            <a href="https://linkedin.com/in/victoraleja" target="_blank" rel="noopener noreferrer" class="group p-5 bg-[#282828]/80 border border-[#3c3836] rounded-2xl flex items-center gap-4 hover:border-[#8ec07c]/50 hover:bg-[#32302f] transition-all shadow-lg block">
+              <div class="p-3 bg-[#1d2021] text-[#8ec07c] rounded-xl group-hover:scale-110 group-hover:bg-[#8ec07c] group-hover:text-[#1d2021] transition-all font-bold">
                 in
               </div>
               <div class="overflow-hidden">
-                <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">LinkedIn</span>
-                <span class="text-sm font-semibold text-zinc-200 group-hover:text-white transition-colors truncate block">linkedin.com/in/victoraleja</span>
+                <span class="text-[11px] font-bold text-[#928374] uppercase tracking-wider block">LinkedIn</span>
+                <span class="text-sm font-semibold text-[#ebdbb2] group-hover:text-[#8ec07c] transition-colors truncate block">linkedin.com/in/victoraleja</span>
               </div>
             </a>
 
             <!-- GitHub -->
-            <a href="https://github.com/victoraleja1" target="_blank" rel="noopener noreferrer" class="group p-5 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl flex items-center gap-4 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all shadow-lg block">
-              <div class="p-3 bg-zinc-900 text-blue-400 rounded-xl group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+            <a href="https://github.com/victoraleja1" target="_blank" rel="noopener noreferrer" class="group p-5 bg-[#282828]/80 border border-[#3c3836] rounded-2xl flex items-center gap-4 hover:border-[#8ec07c]/50 hover:bg-[#32302f] transition-all shadow-lg block">
+              <div class="p-3 bg-[#1d2021] text-[#8ec07c] rounded-xl group-hover:scale-110 group-hover:bg-[#8ec07c] group-hover:text-[#1d2021] transition-all font-bold">
                 🐙
               </div>
               <div class="overflow-hidden">
-                <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">GitHub</span>
-                <span class="text-sm font-semibold text-zinc-200 group-hover:text-white transition-colors truncate block">github.com/victoraleja1</span>
+                <span class="text-[11px] font-bold text-[#928374] uppercase tracking-wider block">GitHub</span>
+                <span class="text-sm font-semibold text-[#ebdbb2] group-hover:text-[#8ec07c] transition-colors truncate block">github.com/victoraleja1</span>
               </div>
             </a>
 
           </div>
 
-          <!-- Columna Derecha: Formulario de Contacto Directo -->
-          <div class="lg:col-span-3 p-6 sm:p-8 bg-gradient-to-b from-zinc-900/60 to-zinc-950/90 border border-zinc-800/80 rounded-3xl shadow-2xl space-y-6">
-            <h3 class="text-xl font-bold text-white tracking-tight">Envíame un mensaje</h3>
+          <!-- Columna Derecha: Formulario -->
+          <div class="lg:col-span-3 p-6 sm:p-8 bg-[#282828] border border-[#3c3836] rounded-3xl shadow-2xl space-y-6">
+            <h3 class="text-xl font-bold text-[#ebdbb2] tracking-tight">Envíame un mensaje</h3>
 
-            <form action="mailto:tu-correo@ejemplo.com" method="GET" class="space-y-4">
+            <form action="mailto:victoraleja1@gmail.com" method="GET" class="space-y-4">
               
               <div class="grid gap-4 sm:grid-cols-2">
                 <div class="space-y-1.5">
-                  <label for="nombre" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Nombre completo</label>
+                  <label for="nombre" class="text-xs font-semibold text-[#a89984] uppercase tracking-wider font-mono">Nombre completo</label>
                   <input
                     type="text"
                     id="nombre"
                     name="subject"
                     placeholder="Tu nombre"
                     required
-                    class="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                    class="w-full px-4 py-3 bg-[#1d2021] border border-[#3c3836] rounded-xl text-sm text-[#ebdbb2] placeholder-[#928374] focus:outline-none focus:border-[#fe8019] focus:ring-1 focus:ring-[#fe8019] transition-all"
                   />
                 </div>
 
                 <div class="space-y-1.5">
-                  <label for="email" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Email</label>
+                  <label for="email" class="text-xs font-semibold text-[#a89984] uppercase tracking-wider font-mono">Email</label>
                   <input
                     type="email"
                     id="email"
                     placeholder="tu@email.com"
                     required
-                    class="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                    class="w-full px-4 py-3 bg-[#1d2021] border border-[#3c3836] rounded-xl text-sm text-[#ebdbb2] placeholder-[#928374] focus:outline-none focus:border-[#fe8019] focus:ring-1 focus:ring-[#fe8019] transition-all"
                   />
                 </div>
               </div>
 
               <div class="space-y-1.5">
-                <label for="mensaje" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Mensaje</label>
+                <label for="mensaje" class="text-xs font-semibold text-[#a89984] uppercase tracking-wider font-mono">Mensaje</label>
                 <textarea
                   id="mensaje"
                   name="body"
                   rows="4"
                   placeholder="..."
                   required
-                  class="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
+                  class="w-full px-4 py-3 bg-[#1d2021] border border-[#3c3836] rounded-xl text-sm text-[#ebdbb2] placeholder-[#928374] focus:outline-none focus:border-[#fe8019] focus:ring-1 focus:ring-[#fe8019] transition-all resize-none"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-blue-500/20 active:scale-[0.98]"
+                class="w-full py-3.5 px-6 rounded-xl bg-[#fe8019] hover:bg-[#fabd2f] text-[#1d2021] font-bold text-sm tracking-wide transition-all shadow-lg shadow-[#fe8019]/10 active:scale-[0.98]"
               >
                 Enviar Mensaje
               </button>
 
-              <p class="text-[11px] text-zinc-500 text-center">
+              <p class="text-[11px] text-[#928374] text-center font-mono">
                 * Este formulario abre tu cliente de email por defecto.
               </p>
 
@@ -430,8 +415,8 @@ const habilidades = [
     </div>
 
     <!-- FOOTER -->
-    <footer class="mt-20 border-t border-zinc-900 py-8 text-center text-xs text-zinc-600 font-medium">
-      &copy; {new Date().getFullYear()} Victor — Diseñado con Astro, React y Tailwind CSS.
+    <footer class="mt-20 border-t border-[#3c3836] py-8 text-center text-xs text-[#928374] font-mono">
+      &copy; {new Date().getFullYear()} Victor Alejá.
     </footer>
 
   </body>
@@ -439,7 +424,6 @@ const habilidades = [
 </html>
 
 <style>
-  /* Animación simple de desvanecimiento para el Hero */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
