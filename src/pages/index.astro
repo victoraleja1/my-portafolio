@@ -15,10 +15,46 @@ const infoProyectos = todosLosProyectos.map((p) => ({
 }));
 
 const habilidades = [
-  { cat: "Desarrollo & Web", items: ["PHP", "JavaScript", "React", "HTML/CSS", "Node.js", "TypeScript"] },
-  { cat: "Redes & Infraestructura", items: ["Configuración de Redes", "GNS3", "MikroTik", "Linux", "Docker"] },
-  { cat: "Soporte Técnico & Hardware", items: ["Mantenimiento Preventivo/Correctivo", "Diagnóstico de Hardware", "Sistemas Operativos", "Seguridad Informática"] },
-  { cat: "Bases de Datos & Gestión", items: ["PostgreSQL", "MySQL", "SQL Server"] }
+  {
+    cat: "Desarrollo & Web",
+    items: [
+      { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
+      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "HTML5 / CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+    ]
+  },
+  {
+    cat: "Redes & Infraestructura",
+    items: [
+      { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "Configuración de Redes", icon: "https://api.iconify.design/lucide:network.svg?color=%2360a5fa" },
+      { name: "GNS3 / Simulación", icon: "https://api.iconify.design/lucide:router.svg?color=%23818cf8" },
+      { name: "MikroTik", icon: "https://api.iconify.design/lucide:server-cog.svg?color=%2338bdf8" },
+    ]
+  },
+  {
+    cat: "Soporte Técnico & Hardware",
+    items: [
+      { name: "Hardware", icon: "https://api.iconify.design/lucide:cpu.svg?color=%2338bdf8" },
+      { name: "Software", icon: "https://api.iconify.design/lucide:wrench.svg?color=%23fbbf24" },
+      { name: "Sistemas Operativos", icon: "https://api.iconify.design/lucide:monitor.svg?color=%23a855f7" },
+      { name: "Seguridad Informática", icon: "https://api.iconify.design/lucide:shield-check.svg?color=%2334d399" },
+    ]
+  },
+  {
+    cat: "Bases de Datos & Gestión",
+    items: [
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+      { name: "SQL Server", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" },
+      { name: "Git & GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+    ]
+  }
 ];
 ---
 
@@ -168,23 +204,40 @@ const habilidades = [
         </div>
       </section>
 
-      <!-- SECCIÓN HABILIDADES -->
+      <!-- SECCIÓN HABILIDADES (VERSIÓN CON ICONOS Y TARJETAS INTERACTIVAS) -->
       <section id="habilidades" class="space-y-8 scroll-mt-24">
         <div class="space-y-2">
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Conocimientos & Herramientas</h2>
-          <p class="text-zinc-500 text-sm font-normal">Áreas en las que practico, configuro y continúo aprendiendo diariamente.</p>
+          <p class="text-zinc-500 text-sm font-normal">Herramientas, entornos y tecnologías aplicadas en desarrollo, redes y laboratorios.</p>
         </div>
-        <div class="grid gap-4 sm:grid-cols-2">
+
+        <div class="grid gap-6 sm:grid-cols-2">
           {habilidades.map((h) => (
-            <div class="p-6 bg-zinc-950/40 border border-zinc-900 rounded-2xl space-y-4">
-              <h3 class="text-sm font-bold tracking-widest text-zinc-400 uppercase">{h.cat}</h3>
-              <div class="flex flex-wrap gap-2">
+            <div class="p-6 bg-zinc-950/60 border border-zinc-800/80 rounded-2xl space-y-5 shadow-xl hover:border-zinc-700/80 transition-all">
+              
+              <!-- Título de Categoría -->
+              <div class="flex items-center gap-2 border-b border-zinc-800/80 pb-3">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                <h3 class="text-xs font-bold tracking-widest text-zinc-300 uppercase font-mono">{h.cat}</h3>
+              </div>
+
+              <!-- Grid de Items con Iconos -->
+              <div class="grid grid-cols-2 gap-3">
                 {h.items.map((item) => (
-                  <span class="px-3 py-1 text-sm bg-zinc-900 text-zinc-100 rounded-lg border border-zinc-800/60 font-medium">
-                    {item}
-                  </span>
+                  <div class="group flex items-center gap-3 p-2.5 bg-zinc-900/60 border border-zinc-800/60 rounded-xl hover:bg-zinc-800/80 hover:border-blue-500/40 hover:scale-[1.02] transition-all duration-300">
+                    <img 
+                      src={item.icon} 
+                      alt={item.name} 
+                      class="w-6 h-6 object-contain group-hover:scale-110 transition-transform duration-300 filter group-hover:brightness-110" 
+                      loading="lazy"
+                    />
+                    <span class="text-xs font-semibold text-zinc-300 group-hover:text-white transition-colors truncate">
+                      {item.name}
+                    </span>
+                  </div>
                 ))}
               </div>
+
             </div>
           ))}
         </div>
