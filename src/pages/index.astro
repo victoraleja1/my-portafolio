@@ -6,6 +6,7 @@ import Revelar from '../components/Revelar.tsx';
 import StatusBadge from '../components/StatusBadge.tsx';
 import ContadorAnimado from '../components/ContadorAnimado.tsx';
 import ScrollProgressBar from '../components/ScrollProgressBar.tsx';
+import EducacionInteractive from '../components/EducacionInteractive.tsx';
 import '../styles/global.css';
 
 const todosLosProyectos = await getCollection('proyectos');
@@ -29,6 +30,7 @@ const habilidades = [
       { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
       { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
       { name: "HTML5 / CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+      { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/astro/astro-original.svg" },
     ]
   },
   {
@@ -291,6 +293,21 @@ const habilidades = [
             </div>
           ))}
         </div>
+      </section>
+      </Revelar>
+      <br><br>
+
+      <!-- SECCIÓN EDUCACIÓN & CERTIFICACIONES INTERACTIVA -->
+      <Revelar client:load>
+      <section id="educacion" class="space-y-8 scroll-mt-24">
+        <div class="space-y-2">
+          <span class="text-xs font-bold tracking-widest text-[#8ec07c] uppercase font-mono">// Registro Académico & Técnico</span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#ebdbb2]">Educación & Formación</h2>
+          <p class="text-[#a89984] text-sm font-normal">Inspecciona mis grados, especializaciones y laboratorios técnicos en tiempo real.</p>
+        </div>
+
+        <!-- Componente Interactivo -->
+        <EducacionInteractive client:load />
       </section>
       </Revelar>
       <br><br>

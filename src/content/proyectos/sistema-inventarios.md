@@ -2,7 +2,7 @@
 title: "Sistema de Invetarios hecho en PHP"
 description: "Sistemas que lleva el control de inventario de una tienda."
 pubDate: 2025-05-20
-tags: ["PHP", "HTML", "CSS", "JavaScript"]
+tags: ["PHP", "HTML", "CSS", "Bootstrap"]
 githubUrl: "https://3.134.105.164/login"
 featured: true
 image: "/proj1.png"

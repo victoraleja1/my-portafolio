@@ -8,6 +8,7 @@ export default function Navbar() {
     { name: "Inicio", href: "#" },
     { name: "Proyectos", href: "#proyectos" },
     { name: "Habilidades", href: "#habilidades" },
+    { name: "Educación", href: "#educacion" },
     { name: "Contacto", href: "#contacto" },
   ];
 
